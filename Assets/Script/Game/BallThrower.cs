@@ -88,37 +88,37 @@ public class BallThrower : MonoBehaviour
             swipeDistance = (endPos - startPos).magnitude;
             swipeTime = endTime - startTime;
 
-            if (swipeTime < 0.5f && swipeDistance > 30f)
+            if (swipeTime < 1f && swipeDistance > 20f)
             {
                 //ボールを投げる
                 CalcSpeed();
                 CalcAngle();
                 //飛び方を変更（要調節）
-                rb.AddForce(new Vector3((angle.x * BallSpeed) / 1.5f, (angle.y * BallSpeed) / 3, (angle.z * BallSpeed) * -3f));
+                rb.AddForce(new Vector3((angle.x * BallSpeed), (angle.y * BallSpeed / 3), (angle.z * BallSpeed) * -0.5f));
                 rb.useGravity = true;
                 holding = false;
                 thrown = true;
                 Debug.Log(BallSpeed);
-                Invoke("ResetBall", 10f);
+                Invoke("ResetBall", 5f);
             }
             else ResetBall();
         }
     }
 
-    private void CalcSpeed()
+    private void CalcAngle()
     {
         angle = Camera.main.ScreenToWorldPoint(new Vector3(endPos.x, endPos.y + 50f, (Camera.main.nearClipPlane + 5)));
     }
 
     //要調節
-    private void CalcAngle()
+    private void CalcSpeed()
     {
 
         if (swipeTime > 0)
             BallVelocity = swipeDistance / swipeTime;
 
 
-        BallSpeed = BallVelocity * 0.9f;
+        BallSpeed = BallVelocity * 0.5f;
         if (BallSpeed >= MaxBallSpeed)
         {
             BallSpeed = MaxBallSpeed;
