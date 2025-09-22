@@ -3,67 +3,67 @@ using UnityEngine;
 public class HoleColliderBuilder : MonoBehaviour
 {
     [SerializeField] private PolygonCollider2D ground2D;
-    [SerializeField] private PolygonCollider2D hole2D;
     [SerializeField] private MeshCollider generatedMeshCollider;
+    [SerializeField] private GameObject floorObject;
+    [SerializeField] private PolygonCollider2D[] hole2Ds;
+    [SerializeField] private GameObject[] holeParents;
     private Mesh generatedMesh;
     private Vector3 initialPos;
 
     private void Start()
     {
         initialPos = transform.position;
-        hole2D.transform.position = Vector3.zero;
-        ground2D.transform.position = Vector3.zero;
+        ground2D.transform.position = floorObject.transform.position;
     }
 
     private void FixedUpdate()
     {
-        if (transform.hasChanged)
-        {
-            transform.hasChanged = false;
-            hole2D.transform.localScale = transform.localScale * 0.5f;
-            // 親オブジェクトの移動量を計算
-            Vector3 relativePosition = transform.position - initialPos;
-            hole2D.transform.position = new Vector2(relativePosition.x, relativePosition.z);
 
-            MakeHole2D();
-            MakeMeshCollider();
+        // 親オブジェクトの移動量を計算
+        //transform.position - initialPos --> transform.position
+        for (int i = 0; i < hole2Ds.Length; i++)
+        {
+            if (holeParents[i].transform.hasChanged)
+            {
+                holeParents[i].transform.hasChanged = false;
+                hole2Ds[i].transform.localRotation = holeParents[i].transform.localRotation;
+                hole2Ds[i].transform.localPosition = new Vector2(holeParents[i].transform.localPosition.x, holeParents[i].transform.localPosition.z);
+                hole2Ds[i].transform.localScale = holeParents[i].transform.localScale * 0.5f;
+                MakeHoles2D();
+                MakeMeshCollider();
+            }
+            
         }
+
+        // Vector3 relativePosition = transform.position - initialPos;
+        // hole2D.transform.position = new Vector2(relativePosition.x, relativePosition.z);
+
+
+
 
     }
 
-    private void MakeHole2D()
+    private void MakeHoles2D()
     {
-        Vector2[] pointPositions = hole2D.GetPath(0);
+        // 最初のパスは地面の輪郭
+        // 穴の数 + 1 のパスを準備
+        ground2D.pathCount = hole2Ds.Length + 1;
 
-        for (int i = 0; i < pointPositions.Length; i++)
+        for (int i = 0; i < hole2Ds.Length; i++)
         {
-            pointPositions[i] = hole2D.transform.TransformPoint(pointPositions[i]);
+            // 各穴のパスを取得
+            Vector2[] pointPositions = hole2Ds[i].GetPath(0);
 
+            // 各パスの点をワールド座標に変換し、ground2Dのローカル座標に戻す
+            for (int j = 0; j < pointPositions.Length; j++)
+            {
+                Vector3 worldPoint = hole2Ds[i].transform.TransformPoint(pointPositions[j]);
+                pointPositions[j] = ground2D.transform.InverseTransformPoint(worldPoint);
+            }
+
+            // ground2Dの2番目以降のパスとして設定
+            ground2D.SetPath(i + 1, pointPositions);
         }
-
-        ground2D.pathCount = 2;
-        ground2D.SetPath(1, pointPositions);
-
-        /** 追加
-        Vector2[] transformedPoints = new Vector2[pointPositions.Length];
-
-        for (int i = 0; i < pointPositions.Length; i++)
-        {
-            // hole2Dのローカル座標を3DのVector3に変換
-            // 地面がXZ平面にあると仮定し、Vector2のyをVector3のzに割り当てる
-            Vector3 point3D = new Vector3(pointPositions[i].x, 0, pointPositions[i].y);
-
-            // 親オブジェクトのTransformPoint()を使ってワールド座標に変換し、
-            // その後ground2DのInverseTransformPoint()でground2Dのローカル座標に変換
-            Vector3 transformedPoint3D = ground2D.transform.InverseTransformPoint(transform.TransformPoint(point3D));
-            
-            // 変換後の3D座標を2Dに戻す（xとzを使用）
-            transformedPoints[i] = new Vector2(transformedPoint3D.x, transformedPoint3D.z);
-        }
-
-        ground2D.pathCount = 2;
-        ground2D.SetPath(1, transformedPoints);
-        */
     }
 
     private void MakeMeshCollider()
@@ -73,11 +73,6 @@ public class HoleColliderBuilder : MonoBehaviour
             Destroy(generatedMesh);
         }
         generatedMesh = ground2D.CreateMesh(true, true);
-        generatedMesh.RecalculateNormals();
-        generatedMesh.RecalculateBounds();
         generatedMeshCollider.sharedMesh = generatedMesh;
-       
-
-        
     }
 }
