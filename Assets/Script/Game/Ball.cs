@@ -19,6 +19,12 @@ public class Ball : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("HoleCollision"))
+        {
+            Debug.Log("穴の当たり判定に触れた！");
+            // イベントを発生させる
+            other.GetComponent<HoleCollision>().OnHit();
+        }
         if (other.CompareTag("Hole"))
         {
             Debug.Log("穴に落ちた！");
