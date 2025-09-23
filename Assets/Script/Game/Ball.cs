@@ -14,9 +14,6 @@ public class Ball : MonoBehaviour
     public void Reset()
     {
         transform.position = initialPosition;
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero;   // velocity → linearVelocity
-        rb.angularVelocity = Vector3.zero;  // angularVelocityは変更なし
         ballCollider.isTrigger = false; // トリガーを無効にする
     }
 
@@ -25,11 +22,11 @@ public class Ball : MonoBehaviour
         if (other.CompareTag("Hole"))
         {
             Debug.Log("穴に落ちた！");
-
+            
             ballCollider.isTrigger = true;
             // ボールが落ちる目標地点（穴の中心）を設定
             //transform.position = other.transform.position;
-
+            
             // イベントを発生させる
             if (OnHitHole != null)
             {
