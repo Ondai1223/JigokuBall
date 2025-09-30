@@ -1,28 +1,25 @@
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace HUD.Score
 {
-    public class Score : MonoBehaviour
+    public class Score
     {
-        private int scoreNum = 0;
-        [SerializeField] private Text scoreText;
-        [SerializeField] private int scoreRate = 1;
+        public static Score Instance;
+        private int scoreNum;
+        public int ScoreNum => scoreNum;
 
-        void Start()
+        public static Score GetInstance()
         {
-            scoreText.text = "Score: 0";
-        }
-
-        public void UpdateScore()
-        {
-            scoreText.text = "Score: " + scoreNum.ToString();
+            if (Instance == null)
+            {
+                Instance = new Score();
+                Instance.scoreNum = 0;
+            }
+            return Instance;
         }
 
         public void AddScore(int newScoreNum)
         {
             scoreNum += newScoreNum;
-            UpdateScore();
+            UnityEngine.Debug.Log("Score Added: " + newScoreNum.ToString() + ", Total Score: " + scoreNum.ToString());
         }
     }
 }
