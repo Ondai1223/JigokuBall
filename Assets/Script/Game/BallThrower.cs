@@ -34,6 +34,7 @@ public class BallThrower : MonoBehaviour
 
     public void ResetBall()
     {
+        CancelInvoke("ResetBall");
         angle = Vector3.zero;
         endPos = Vector2.zero;
         startPos = Vector2.zero;
