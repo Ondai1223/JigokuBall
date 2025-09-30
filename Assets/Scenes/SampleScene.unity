@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 37058311}
   - component: {fileID: 37058312}
   m_Layer: 0
-  m_Name: HoleColliderBuilder
+  m_Name: GameStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,12 +160,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 37058309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17d554894beba4968a889d379b97e1c1, type: 3}
+  m_Script: {fileID: 11500000, guid: a333c7e5fe5a94b4786578c112c95d08, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HoleColliderBuilder
-  ground2D: {fileID: 612024842}
+  m_EditorClassIdentifier: Assembly-CSharp::GameStage
   generatedMeshCollider: {fileID: 1610104356}
+  groundObject: {fileID: 1772157696}
   floorObject: {fileID: 1220574717}
+  ground2D: {fileID: 612024842}
   hole2Ds:
   - {fileID: 1166408673}
   - {fileID: 518802521}
@@ -688,6 +689,22 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465047805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1904821777}
+  - {fileID: 1405605348}
+  m_Father: {fileID: 1220574718}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518802519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1400,7 @@ GameObject:
   - component: {fileID: 1012989196}
   m_Layer: 0
   m_Name: HoleParentB
-  m_TagString: Untagged
+  m_TagString: HoleParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1652,7 +1669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1220574718}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: FloorA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1933,10 +1950,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 612024841}
-  - {fileID: 1610104355}
   - {fileID: 1166408672}
   - {fileID: 518802520}
   - {fileID: 589722742}
+  - {fileID: 1610104355}
   m_Father: {fileID: 1220574718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2022616844
