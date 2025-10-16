@@ -14,14 +14,17 @@ public class GameHole
     {
         this.hole2Ds = hole2Ds;
         this.holeParents = holeParents;
+        Debug.Log("Initialized GameHole with " + hole2Ds.Length + " holes.");
     }
     public void UpdateHoles2DPosition(float cosAngle)
     {
         for (int i = 0; i < hole2Ds.Length; i++)
         {
-            hole2Ds[i].transform.localRotation = holeParents[i].transform.localRotation;
-            hole2Ds[i].transform.localPosition = new Vector2(holeParents[i].transform.localPosition.x, holeParents[i].transform.localPosition.z / cosAngle);
-            hole2Ds[i].transform.localScale = holeParents[i].transform.localScale * 0.5f;
+            Vector3 newPosition = holeParents[i].transform.localPosition;
+            Vector3 newHoleLocalPos = hole2Ds[i].transform.localPosition;
+            newHoleLocalPos.y = newPosition.z / 1.75f;
+            Debug.Log($"cosAngle: {cosAngle}");
+            hole2Ds[i].transform.localPosition = newHoleLocalPos;
         }
     }
     

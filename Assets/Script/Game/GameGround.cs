@@ -31,6 +31,7 @@ public class GameGround
         {
             ground2D.pathCount = 1;
         }
+        Debug.Log("Calculated ground outline with cosAngle: " + cosAngle);
 
     }
     public void MakeHoles2D(PolygonCollider2D[] hole2Ds)
@@ -54,6 +55,7 @@ public class GameGround
             // ground2Dの2番目以降のパスとして設定
             ground2D.SetPath(i + 1, pointPositions);
         }
+        Debug.Log("Updated ground2D with " + hole2Ds.Length + " holes.");
     }
 
 }
