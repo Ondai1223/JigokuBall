@@ -1860,6 +1860,17 @@ Transform:
   - {fileID: 283324426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!114 &1239959796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1441259082030348455, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
+  m_PrefabInstance: {fileID: 7826520670906538210}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1480616504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,6 +2481,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022616844}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2052504277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5326106940204899397, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
+  m_PrefabInstance: {fileID: 7826520670906538210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2052504279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052504277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0f072a9d2d6a149902d0846ab95b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResultScoreViewer
+  _scoreText: {fileID: 1239959796}
 --- !u!1 &2125451831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,6 +3129,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5326106940204899397, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2052504279}
     - targetCorrespondingSourceObject: {fileID: 8533812445349525322, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
       insertIndex: -1
       addedObject: {fileID: 355129800}

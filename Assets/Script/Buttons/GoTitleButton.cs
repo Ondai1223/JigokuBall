@@ -7,21 +7,7 @@ public class GoTitleButton : MonoBehaviour
 
     public void OnClick()
     {
-        if (string.IsNullOrEmpty(_title))
-        {
-            Debug.LogError("Scene name is empty or null!");
-            return;
-        }
-
-        Debug.Log($"Attempting to load scene: {_title}");
-
-        try
-        {
-            SceneManager.LoadScene(_title);
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError($"Failed to load scene: {_title}. Exception: {ex.Message}");
-        }
+        Debug.Log("タイトルへ戻るボタンが押されました。" + _title);
+        SceneManager.LoadScene(_title);
     }
 }
