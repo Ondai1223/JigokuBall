@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using HUD.Score;
 
 public class GoTitleButton : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class GoTitleButton : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("タイトルへ戻るボタンが押されました。" + _title);
+        Score.GetInstance().ResetScore();
         SceneManager.LoadScene(_title);
     }
 }
