@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 namespace HUD.Score
 {
     public class ScoreObj : MonoBehaviour
     {
         private int scoreNum = 0;
-        [SerializeField] private Text scoreText;
+        [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private int scoreRate = 1;
 
         void Start()
         {
-            scoreText.text = "Score: 0";
+            scoreText.text = "0";
         }
 
         public void UpdateScore()
