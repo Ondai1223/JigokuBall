@@ -16,7 +16,7 @@ namespace HUD.Score
 
         public void UpdateScore()
         {
-            scoreText.text = "Score: " + Score.GetInstance().ScoreNum.ToString();
+            scoreText.text = Score.GetInstance().ScoreNum.ToString();
             Debug.Log("Score Updated: " + Score.GetInstance().ScoreNum.ToString());
         }
     }
