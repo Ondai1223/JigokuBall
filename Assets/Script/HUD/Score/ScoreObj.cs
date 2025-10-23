@@ -1,13 +1,16 @@
 using JigokuBall.GameCore;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 namespace HUD.Score
 {
     public class ScoreObj : MonoBehaviour
     {
-        [SerializeField] private Text scoreText; // スコア表示用の UI テキスト
+        private int scoreNum = 0;
+        [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private int scoreRate = 1;
         [SerializeField] private GameManager gameManager; // ScoreService にアクセスする GameManager
+
 
         private ScoreService scoreService; // 現在購読しているスコアサービス
 
@@ -60,15 +63,15 @@ namespace HUD.Score
 
         private void HandleScoreChanged(ScoreChanged change)
         {
-            UpdateScoreLabel(change.NewScore);
+
+            scoreText.text = "0";
         }
 
         private void UpdateScoreLabel(int value)
         {
-            if (scoreText != null)
-            {
-                scoreText.text = $"Score: {value}";
-            }
+            scoreText.text = Score.GetInstance().ScoreNum.ToString();
+            Debug.Log("Score Updated: " + Score.GetInstance().ScoreNum.ToString());
+
         }
     }
 }
