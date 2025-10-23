@@ -6,9 +6,7 @@ namespace HUD.Score
 {
     public class ScoreObj : MonoBehaviour
     {
-        private int scoreNum = 0;
         [SerializeField] private TextMeshProUGUI scoreText;
-        [SerializeField] private int scoreRate = 1;
         [SerializeField] private GameManager gameManager; // ScoreService にアクセスする GameManager
 
 

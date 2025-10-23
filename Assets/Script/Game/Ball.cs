@@ -31,7 +31,6 @@ public class Ball : MonoBehaviour
     
     public void Reset()
     {
-        transform.position = initialPosition;
 
         if (ballCollider != null)
         {

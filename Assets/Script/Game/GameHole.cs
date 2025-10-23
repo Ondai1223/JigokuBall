@@ -14,7 +14,6 @@ public class GameHole
     {
         this.hole2Ds = hole2Ds;
         this.holeParents = holeParents;
-        Debug.Log("Initialized GameHole with " + hole2Ds.Length + " holes.");
     }
     public void UpdateHoles2DPosition(float cosAngle)
     {
@@ -23,7 +22,7 @@ public class GameHole
             Vector3 ParentLocalPos = holeParents[i].transform.localPosition;
             Vector3 newHoleLocalPos = Vector3.zero;
             newHoleLocalPos.y = ParentLocalPos.z / cosAngle / holeParents[i].transform.localScale.y;
-            Debug.Log($"cosAngle: {cosAngle}");
+            
             hole2Ds[i].transform.localRotation = holeParents[i].transform.localRotation;
             hole2Ds[i].transform.localPosition = newHoleLocalPos;
             

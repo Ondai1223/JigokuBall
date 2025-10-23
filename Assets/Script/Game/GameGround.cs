@@ -14,7 +14,7 @@ public class GameGround
     {
         Vector3 scale = groundObject.transform.localScale;
         // 地面のアウトラインを設定する
-        float halfX = scale.x / 2f;
+        float halfX = (scale.x * 0.5f); // X軸スケールを補正し、2DコライダーのX軸サイズとして使用
         // Y軸スケールを補正し、2DコライダーのY軸サイズとして使用
         float halfY_corrected = (scale.y / 2f) / cosAngle;
         Vector2[] outlinePoints = new Vector2[]
@@ -24,14 +24,13 @@ public class GameGround
             new Vector2(halfX, halfY_corrected),
             new Vector2(halfX, -halfY_corrected)
         };
-        Debug.Log("Ground Outline Points: " + string.Join(", ", outlinePoints));
+        
         ground2D.pathCount = 1;
         ground2D.SetPath(0, outlinePoints);
         if (ground2D.pathCount < 1)
         {
             ground2D.pathCount = 1;
         }
-        Debug.Log("Calculated ground outline with cosAngle: " + cosAngle);
 
     }
     public void MakeHoles2D(PolygonCollider2D[] hole2Ds)
@@ -55,7 +54,6 @@ public class GameGround
             // ground2Dの2番目以降のパスとして設定
             ground2D.SetPath(i + 1, pointPositions);
         }
-        Debug.Log("Updated ground2D with " + hole2Ds.Length + " holes.");
     }
 
 }

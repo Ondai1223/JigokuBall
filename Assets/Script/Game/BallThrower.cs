@@ -258,7 +258,7 @@ public class BallThrower : MonoBehaviour
             return;
         }
 
-        Vector3 force = new Vector3(angle.x * ballSpeed, angle.y * ballSpeed / 3f, angle.z * ballSpeed * -0.5f);
+        Vector3 force = new Vector3(angle.x * ballSpeed * 1.2f, angle.y * ballSpeed * 0.5f, angle.z * ballSpeed * -0.15f);
         rb.AddForce(force);
         rb.useGravity = true;
     }
