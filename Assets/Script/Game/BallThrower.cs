@@ -149,11 +149,6 @@ public class BallThrower : MonoBehaviour
                 collider.isTrigger = false;
             }
         }
-
-        if (ballComponent != null)
-        {
-            ballComponent.Reset();
-        }
     }
 
     private void Update()

@@ -23,7 +23,6 @@ public class GameHole
             Vector3 newHoleLocalPos = Vector3.zero;
             newHoleLocalPos.y = ParentLocalPos.z / cosAngle / holeParents[i].transform.localScale.y;
             
-            hole2Ds[i].transform.localRotation = holeParents[i].transform.localRotation;
             hole2Ds[i].transform.localPosition = newHoleLocalPos;
             
         }

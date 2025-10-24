@@ -161,6 +161,7 @@ namespace JigokuBall.GameCore
             var finalScore = _scoreService?.CurrentScore ?? 0;
             var result = new SessionResult(finalScore, _attemptIndex);
             Debug.Log($"[AttemptManager] セッション終了: 総得点 {finalScore}, 使用投球 {_attemptIndex}/{rules.MaxAttempts}");
+            // TODO: ここでリザルトモーダルを表示させる？
             OnSessionEnded?.Invoke(result);
         }
 
