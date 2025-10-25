@@ -5,7 +5,7 @@ namespace HUD.Score
 {
     public class ScoreObj : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private Text scoreText;
 
         private void OnEnable()
         {
@@ -45,7 +45,7 @@ namespace HUD.Score
         {
             // Score シングルトンから現在値を取得
             int currentScore = Score.GetInstance().ScoreNum;
-            UpdateScoreLabel(currentScore);
+            UpdateScoreLabel(currentScore + delta);
         }
 
         private void UpdateScoreLabel(int value)
