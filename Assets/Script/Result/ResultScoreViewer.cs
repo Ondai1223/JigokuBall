@@ -14,6 +14,7 @@ public class ResultScoreViewer : MonoBehaviour
 
     public void SetScore()
     {
-        _scoreText.text = Score.GetInstance().ScoreNum.ToString();
+        int currentScore = Score.GetInstance().ScoreNum;
+        _scoreText.text = currentScore.ToString();
     }
 }

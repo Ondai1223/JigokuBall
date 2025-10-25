@@ -1,4 +1,3 @@
-using JigokuBall.GameCore;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,18 +5,7 @@ namespace HUD.Score
 {
     public class ScoreObj : MonoBehaviour
     {
-        [SerializeField] private Text scoreText; // スコア表示用の UI テキスト
-        [SerializeField] private GameManager gameManager; // ScoreService にアクセスする GameManager
-
-        private ScoreService scoreService; // 現在購読しているスコアサービス
-
-        private void Awake()
-        {
-            if (gameManager == null)
-            {
-                gameManager = FindFirstObjectByType<GameManager>(FindObjectsInactive.Include);
-            }
-        }
+        [SerializeField] private Text scoreText; // スコア表示用のテキスト
 
         private void OnEnable()
         {
@@ -31,36 +19,33 @@ namespace HUD.Score
 
         private void Subscribe()
         {
-            if (gameManager == null)
+            Score score = Score.GetInstance();
+            if (score == null)
             {
-                Debug.LogWarning("ScoreObj に GameManager が設定されていません。");
+                Debug.LogWarning("ScoreObj: Score シングルトンが見つかりません。");
                 return;
             }
 
-            scoreService = gameManager.ScoreService;
-            if (scoreService == null)
-            {
-                Debug.LogWarning("ScoreObj: ScoreService が初期化されていません。");
-                return;
-            }
-
-            scoreService.OnScoreChanged += HandleScoreChanged;
-            UpdateScoreLabel(scoreService.CurrentScore);
+            score.OnScoreChanged += HandleScoreChanged;
+            UpdateScoreLabel(score.ScoreNum);
         }
 
         private void Unsubscribe()
         {
-            if (scoreService == null)
+            Score score = Score.GetInstance();
+            if (score == null)
             {
                 return;
             }
 
-            scoreService.OnScoreChanged -= HandleScoreChanged;
+            score.OnScoreChanged -= HandleScoreChanged;
         }
 
-        private void HandleScoreChanged(ScoreChanged change)
+        private void HandleScoreChanged(int delta)
         {
-            UpdateScoreLabel(change.NewScore);
+            // Score シングルトンから現在値を取得
+            int currentScore = Score.GetInstance().ScoreNum;
+            UpdateScoreLabel(currentScore);
         }
 
         private void UpdateScoreLabel(int value)

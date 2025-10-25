@@ -1,16 +1,17 @@
 using System;
 using UnityEngine;
+using HUD.Score;
 
 namespace JigokuBall.GameCore
 {
     /// <summary>
     /// 単一プレイヤーの投球セッションを制御し、イベント通知を一元化します。
+    /// 
     /// </summary>
     public sealed class AttemptManager : MonoBehaviour
     {
         [SerializeField] private AttemptRules rules; // セッションのルール定義
 
-        private ScoreService _scoreService; // スコア集計サービス
         private bool _sessionActive; // セッションが進行中か
         private bool _attemptActive; // 現在投球処理中か
         private int _attemptIndex; // 進行中または次に開始する投球インデックス
@@ -31,16 +32,13 @@ namespace JigokuBall.GameCore
         public bool AttemptActive => _attemptActive;
         /// <summary>使用しているルールアセット。</summary>
         public AttemptRules Rules => rules;
-        /// <summary>参照しているスコアサービス。</summary>
-        public ScoreService ScoreService => _scoreService;
         /// <summary>現在の投球インデックス (0-based)。</summary>
         public int CurrentAttemptIndex => _attemptIndex;
 
-        /// <summary>ルールとスコアサービスを注入します。</summary>
-        public void Initialize(AttemptRules injectedRules, ScoreService scoreService)
+        /// <summary>ルールを注入します。</summary>
+        public void Initialize(AttemptRules injectedRules)
         {
             rules = injectedRules != null ? injectedRules : rules;
-            _scoreService = scoreService ?? throw new ArgumentNullException(nameof(scoreService));
         }
 
         /// <summary>セッションを開始または再開します。</summary>
@@ -58,7 +56,9 @@ namespace JigokuBall.GameCore
 
             EnsureDependencies();
 
-            _scoreService.ResetScore();
+            // Score シングルトンでリセット
+            Score.GetInstance().ResetScore();
+            
             _attemptIndex = 0;
             _currentAttemptAccumulatedScore = 0;
 
@@ -97,7 +97,9 @@ namespace JigokuBall.GameCore
             }
 
             _currentAttemptAccumulatedScore += points;
-            _scoreService?.AddScore(points);
+            
+            // Score シングルトンに加算
+            Score.GetInstance().AddScore(points);
         }
 
         /// <summary>現在の投球を完了させ、次の状態へ進めます。</summary>
@@ -112,7 +114,10 @@ namespace JigokuBall.GameCore
 
             int attemptsRemainingBeforeAdvance = Math.Max(0, rules.MaxAttempts - _attemptIndex);
             var attemptInfo = new AttemptInfo(_attemptIndex, attemptsRemainingBeforeAdvance);
-            var result = new AttemptResult(attemptInfo, _currentAttemptAccumulatedScore, _scoreService?.CurrentScore ?? 0, cause);
+            
+            // Score シングルトンから現在スコアを取得
+            int currentScore = Score.GetInstance().ScoreNum;
+            var result = new AttemptResult(attemptInfo, _currentAttemptAccumulatedScore, currentScore, cause);
             Debug.Log($"[AttemptManager] {attemptInfo.DisplayAttemptNumber}/{rules.MaxAttempts}投目終了: 得点 {result.GainedScore}, 累計 {result.AccumulatedScore}, 理由 {cause}");
             OnAttemptResolved?.Invoke(result);
 
@@ -158,7 +163,8 @@ namespace JigokuBall.GameCore
             _sessionActive = false;
             _attemptActive = false;
 
-            var finalScore = _scoreService?.CurrentScore ?? 0;
+            // Score シングルトンから最終スコアを取得
+            int finalScore = Score.GetInstance().ScoreNum;
             var result = new SessionResult(finalScore, _attemptIndex);
             Debug.Log($"[AttemptManager] セッション終了: 総得点 {finalScore}, 使用投球 {_attemptIndex}/{rules.MaxAttempts}");
             OnSessionEnded?.Invoke(result);
@@ -169,11 +175,6 @@ namespace JigokuBall.GameCore
             if (rules == null)
             {
                 throw new InvalidOperationException("AttemptManager requires AttemptRules. Assign it in the inspector or via Initialize().");
-            }
-
-            if (_scoreService == null)
-            {
-                throw new InvalidOperationException("AttemptManager requires ScoreService. Call Initialize() beforehand.");
             }
         }
     }
