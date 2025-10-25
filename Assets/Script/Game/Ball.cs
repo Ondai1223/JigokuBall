@@ -28,17 +28,6 @@ public class Ball : MonoBehaviour
         }
     }
 
-    
-    public void Reset()
-    {
-        transform.position = initialPosition;
-
-        if (ballCollider != null)
-        {
-            ballCollider.isTrigger = false; // トリガーを無効にする
-        }
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("HoleCollision"))

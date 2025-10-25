@@ -19,9 +19,12 @@ public class GameHole
     {
         for (int i = 0; i < hole2Ds.Length; i++)
         {
-            hole2Ds[i].transform.localRotation = holeParents[i].transform.localRotation;
-            hole2Ds[i].transform.localPosition = new Vector2(holeParents[i].transform.localPosition.x, holeParents[i].transform.localPosition.z / cosAngle);
-            hole2Ds[i].transform.localScale = holeParents[i].transform.localScale * 0.5f;
+            Vector3 ParentLocalPos = holeParents[i].transform.localPosition;
+            Vector3 newHoleLocalPos = Vector3.zero;
+            newHoleLocalPos.y = ParentLocalPos.z / cosAngle / holeParents[i].transform.localScale.y;
+            
+            hole2Ds[i].transform.localPosition = newHoleLocalPos;
+            
         }
     }
     
