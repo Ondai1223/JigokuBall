@@ -21,5 +21,10 @@ namespace HUD.Score
             scoreNum += newScoreNum;
             UnityEngine.Debug.Log("Score Added: " + newScoreNum.ToString() + ", Total Score: " + scoreNum.ToString());
         }
+
+        public void ResetScore()
+        {
+            scoreNum = 0;
+        }
     }
 }
