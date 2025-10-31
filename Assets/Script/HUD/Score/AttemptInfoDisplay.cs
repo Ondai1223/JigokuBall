@@ -92,7 +92,7 @@ namespace HUD.Score
             // 残り投球数を表示
             int remainingAttempts = _attemptManager.Rules.MaxAttempts - _attemptManager.CurrentAttemptIndex;
 
-            attemptInfoText.text = $"残り: {remainingAttempts}";
+            attemptInfoText.text = $"{remainingAttempts}";
         }
     }
 }
