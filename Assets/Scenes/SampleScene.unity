@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JigokuBall.GameCore.AttemptManager
   rules: {fileID: 11400000, guid: ab6b11a4e6cc54f8db8e7e556e91d56f, type: 2}
+  _resultViewer: {fileID: 7826520670906538216}
 --- !u!114 &88020349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2209,6 +2210,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4489156938649573781, guid: af9aeb9670eeb744d80341daecb05ba7, type: 3}
   m_PrefabInstance: {fileID: 758657402}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &772377413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6387388226913438486, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
+  m_PrefabInstance: {fileID: 1985649197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1001 &797675830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2367,6 +2379,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &982691049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9167126772477141409, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
+  m_PrefabInstance: {fileID: 1985649197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &982691054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982691049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5659052af0ca49e98d87b99c4240b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HUD.Score.AttemptInfoDisplay
+  attemptInfoText: {fileID: 772377413}
+  gameManager: {fileID: 88020349}
+--- !u!114 &982691055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982691049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22de8a099aa1d4418467410f8a4f272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HUD.Score.ScoreObj
+  scoreText: {fileID: 1513953179}
+  gameManager: {fileID: 88020349}
 --- !u!1 &1102288487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4900,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4107966364350984187, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1513953178}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9167126772477141409, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 982691054}
+    - targetCorrespondingSourceObject: {fileID: 9167126772477141409, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 982691055}
   m_SourcePrefab: {fileID: 100100000, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
 --- !u!1 &1991758124
 GameObject:
@@ -5312,6 +5363,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 312777459}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3340827688582535960, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7826520670906538216}
     - targetCorrespondingSourceObject: {fileID: 5326106940204899397, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2052504279}
@@ -5321,6 +5375,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3340827688582535960, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
   m_PrefabInstance: {fileID: 7826520670906538210}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7826520670906538216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7826520670906538211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0f072a9d2d6a149902d0846ab95b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResultScoreViewer
+  _scoreText: {fileID: 1912576890}
 --- !u!1001 &8167002623180555709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5427,7 +5494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8318187471468413470, guid: 80e97414eb925f34f9e6e4b4d169af38, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

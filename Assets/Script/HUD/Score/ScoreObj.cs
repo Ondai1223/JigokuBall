@@ -62,13 +62,13 @@ namespace HUD.Score
         private void HandleScoreChanged(ScoreChanged change)
         {
 
-            scoreText.text = "0";
+            UpdateScoreLabel(scoreService.CurrentScore);
         }
 
         private void UpdateScoreLabel(int value)
         {
-            scoreText.text = Score.GetInstance().ScoreNum.ToString();
-            Debug.Log("Score Updated: " + Score.GetInstance().ScoreNum.ToString());
+            scoreText.text = value.ToString();
+            Debug.Log("Score Updated: " + value.ToString());
 
         }
     }
