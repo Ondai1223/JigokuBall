@@ -5,7 +5,7 @@ namespace HUD.Score
 {
     public class ScoreObj : MonoBehaviour
     {
-        [SerializeField] private Text scoreText;
+        [SerializeField] private TextMeshProUGUI scoreText;
 
         private void OnEnable()
         {
