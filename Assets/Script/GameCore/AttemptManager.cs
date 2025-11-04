@@ -35,6 +35,8 @@ namespace JigokuBall.GameCore
         /// <summary>現在の投球インデックス (0-based)。</summary>
         public int CurrentAttemptIndex => _attemptIndex;
 
+        [SerializeField] private ResultScoreViewer _resultViewer; // 結果表示モーダル
+
         /// <summary>ルールを注入します。</summary>
         public void Initialize(AttemptRules injectedRules)
         {
@@ -166,9 +168,12 @@ namespace JigokuBall.GameCore
             // Score シングルトンから最終スコアを取得
             int finalScore = Score.GetInstance().ScoreNum;
             var result = new SessionResult(finalScore, _attemptIndex);
+            int attemptsRemaining = Math.Max(0, rules.MaxAttempts - _attemptIndex);
+            var info = new AttemptInfo(_attemptIndex, attemptsRemaining);
+            OnAttemptStarted?.Invoke(info);
             Debug.Log($"[AttemptManager] セッション終了: 総得点 {finalScore}, 使用投球 {_attemptIndex}/{rules.MaxAttempts}");
-            // TODO: ここでリザルトモーダルを表示させる？
             OnSessionEnded?.Invoke(result);
+            _resultViewer.ShowViewer(finalScore);
         }
 
         private void EnsureDependencies()

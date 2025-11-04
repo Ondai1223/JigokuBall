@@ -410,6 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JigokuBall.GameCore.AttemptManager
   rules: {fileID: 11400000, guid: ab6b11a4e6cc54f8db8e7e556e91d56f, type: 2}
+  _resultViewer: {fileID: 7826520670906538216}
 --- !u!114 &88020349
 MonoBehaviour:
   m_ObjectHideFlags: 0

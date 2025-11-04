@@ -7,12 +7,14 @@ public class ResultScoreViewer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
 
-    void Start()
+    
+
+    public void SetScore(int score)
     {
-        SetScore();
+        _scoreText.text = score.ToString();
     }
 
-    public void SetScore()
+    public void ShowViewer(int score)
     {
         int currentScore = Score.GetInstance().ScoreNum;
         _scoreText.text = currentScore.ToString();
