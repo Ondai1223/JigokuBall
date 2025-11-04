@@ -283,17 +283,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 843414645848111929, guid: 9a043649d545378439d83c32bdea0b04, type: 3}
   m_PrefabInstance: {fileID: 7826520670906538210}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &46570587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 918045739914438157, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
-  m_PrefabInstance: {fileID: 1985649197}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &86498511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,7 +2410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22de8a099aa1d4418467410f8a4f272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUD.Score.ScoreObj
-  scoreText: {fileID: 46570587}
+  scoreText: {fileID: 1513953179}
 --- !u!1 &1102288487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,7 +2446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ball
   initialPosition: {x: 0, y: 0, z: 0}
   ballCollider: {fileID: 1102288489}
-  score: {fileID: 1134561021}
+  score: {fileID: 0}
   attemptManager: {fileID: 88020348}
 --- !u!135 &1102288489
 SphereCollider:
@@ -2653,17 +2642,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109671652}
   m_CullTransparentMesh: 1
---- !u!114 &1134561021 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
-  m_PrefabInstance: {fileID: 1985649197}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22de8a099aa1d4418467410f8a4f272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HUD.Score.Score
 --- !u!224 &1134561022 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4107966364350984187, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
@@ -3885,25 +3863,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4489156938649573781, guid: af9aeb9670eeb744d80341daecb05ba7, type: 3}
   m_PrefabInstance: {fileID: 1650051382}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1679931573 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 786752130465491691, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
-  m_PrefabInstance: {fileID: 1985649197}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1679931575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679931573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5659052af0ca49e98d87b99c4240b4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HUD.Score.AttemptInfoDisplay
-  attemptInfoText: {fileID: 772377413}
-  gameManager: {fileID: 88020349}
 --- !u!1 &1711657648
 GameObject:
   m_ObjectHideFlags: 0
@@ -4791,7 +4750,7 @@ PrefabInstance:
     - target: {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 46570587}
+      objectReference: {fileID: 0}
     - target: {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
       propertyPath: gameManager
       value: 
@@ -4924,7 +4883,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4107966364350984187, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
@@ -4937,9 +4897,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9167126772477141409, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 982691055}
-    - targetCorrespondingSourceObject: {fileID: 786752130465491691, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1679931575}
   m_SourcePrefab: {fileID: 100100000, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
 --- !u!1 &1991758124
 GameObject:
