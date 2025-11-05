@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour
 {
     public static System.Action OnHitHole; // 当たったことを知らせるイベント
     
-    private Vector3 initialPosition;
+    [SerializeField] private Vector3 initialPosition; // Inspector で固定可能な初期位置
     [SerializeField] Collider ballCollider;
     [SerializeField] ScoreObj score;
 
@@ -15,7 +15,11 @@ public class Ball : MonoBehaviour
 
     void Awake()
     {
-        initialPosition = transform.position;
+        // initialPosition が未設定（Vector3.zero）なら、現在位置を使用
+        if (initialPosition == Vector3.zero)
+        {
+            initialPosition = transform.position;
+        }
 
         if (ballCollider == null)
         {
@@ -28,13 +32,61 @@ public class Ball : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void Update()
+    {
+        // デバッグ用：P キーで穴に入ったことをシミュレート
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            DebugSimulateHoleHit();
+        }
+#endif
+    }
+    
+    public void Reset()
+    {
+        transform.position = initialPosition;
+
+        if (ballCollider != null)
+        {
+            ballCollider.isTrigger = false; // トリガーを無効にする
+        }
+    }
+
+    /// <summary>
+    /// デバッグ用：穴に入ったことをシミュレート（P キーで実行）
+    /// </summary>
+    private void DebugSimulateHoleHit()
+    {
+        if (attemptManager == null)
+        {
+            Debug.LogError("[Ball] AttemptManager が未設定です。デバッグシミュレーション失敗。");
+            return;
+        }
+
+        Debug.Log("[Ball] デバッグ：穴に入ったことをシミュレートします（P キー）");
+        
+        // スコアを報告
+        attemptManager.ReportScore(10);
+        
+        // 投球を完了させる
+        attemptManager.ResolveAttempt(AttemptResolutionCause.SunkInHole);
+        
+        // ボールをリセット
+        Reset();
+    }
+
+    /// <summary>
+    /// Unity ライフサイクル：Collider がトリガーに進入したときに呼ばれます
+    /// </summary>
+    private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("HoleCollision"))
         {
             Debug.Log("穴の当たり判定に触れた！");
             var trigger = other.GetComponent<HoleTrigger>();
             trigger?.OnHit();
+            Debug.Log($"[Ball] HoleTrigger.OnHit() が呼ばれました。AttemptManager={attemptManager?.name}");
         }
 
         if (other.CompareTag("Hole"))

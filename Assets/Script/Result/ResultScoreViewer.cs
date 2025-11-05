@@ -16,7 +16,7 @@ public class ResultScoreViewer : MonoBehaviour
 
     public void ShowViewer(int score)
     {
-        this.gameObject.SetActive(true);
-        SetScore(score);
+        int currentScore = Score.GetInstance().ScoreNum;
+        _scoreText.text = currentScore.ToString();
     }
 }
