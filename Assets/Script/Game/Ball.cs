@@ -12,6 +12,8 @@ public class Ball : MonoBehaviour
 
     [SerializeField] private AttemptManager attemptManager;
     
+    private float SCALE = 1.25f;
+    
 
     void Awake()
     {
@@ -61,5 +63,11 @@ public class Ball : MonoBehaviour
                 Debug.LogWarning("AttemptManager が未設定のため ResolveAttempt を呼び出せません。");
             }
         }
+    }
+
+    public void ChangeScale()
+    {
+        transform.localScale = new Vector3(transform.localScale.x * SCALE, transform.localScale.y * SCALE, transform.localScale.z * SCALE);
+        Debug.Log("Ball: スケールを変更しました。");
     }
 }
