@@ -11,12 +11,8 @@ namespace JigokuBall.GameCore
         [SerializeField] private AttemptManager attemptManager; // シーン内のセッション管理コンポーネント
         [SerializeField] private bool autoStartOnAwake = true; // Awake 後に自動で開始するかどうか
 
-        private ScoreService _scoreService; // セッション共有スコアサービス
-
         /// <summary>現在使用中の AttemptManager。</summary>
         public AttemptManager AttemptManager => attemptManager;
-        /// <summary>共有しているスコアサービス。</summary>
-        public ScoreService ScoreService => _scoreService;
         /// <summary>参照しているルールアセット。</summary>
         public AttemptRules Rules => rules;
 
@@ -46,8 +42,7 @@ namespace JigokuBall.GameCore
                 return;
             }
 
-            _scoreService = new ScoreService();
-            attemptManager.Initialize(rules, _scoreService);
+            attemptManager.Initialize(rules);
         }
 
         /// <summary>初期化後に自動でセッションを開始します。</summary>

@@ -2411,7 +2411,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUD.Score.ScoreObj
   scoreText: {fileID: 1513953179}
-  gameManager: {fileID: 88020349}
 --- !u!1 &1102288487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2445,8 +2444,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc793e1cfec4d406bad8f79e6aa92d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
+  initialPosition: {x: 0, y: 0, z: 0}
   ballCollider: {fileID: 1102288489}
-  score: {fileID: 1134561021}
+  score: {fileID: 0}
   attemptManager: {fileID: 88020348}
 --- !u!135 &1102288489
 SphereCollider:
@@ -2642,17 +2642,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109671652}
   m_CullTransparentMesh: 1
---- !u!114 &1134561021 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
-  m_PrefabInstance: {fileID: 1985649197}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22de8a099aa1d4418467410f8a4f272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HUD.Score.Score
 --- !u!224 &1134561022 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4107966364350984187, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
@@ -4761,7 +4750,7 @@ PrefabInstance:
     - target: {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 1513953179}
+      objectReference: {fileID: 0}
     - target: {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
       propertyPath: gameManager
       value: 
@@ -4894,7 +4883,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6739281133030878807, guid: 460646140846fe746bf314aae24a7bfb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4107966364350984187, guid: 460646140846fe746bf314aae24a7bfb, type: 3}

@@ -11,7 +11,8 @@ Texture2D:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
   m_IsAlphaChannelOptional: 0
-  serializedVersion: 4
+
+  serializedVersion: 3
   m_Width: 1
   m_Height: 1
   m_CompleteImageSize: 1
@@ -229,6 +230,12 @@ MonoBehaviour:
   m_AtlasRenderMode: 4165
   m_UsedGlyphRects: []
   m_FreeGlyphRects:
+
+  - m_X: 211
+    m_Y: 0
+    m_Width: 1023
+    m_Height: 1023
+
   - m_X: 0
     m_Y: 0
     m_Width: 1023
