@@ -18,5 +18,6 @@ public class ResultScoreViewer : MonoBehaviour
     {
         int currentScore = Score.GetInstance().ScoreNum;
         _scoreText.text = currentScore.ToString();
+        gameObject.SetActive(true);
     }
 }
