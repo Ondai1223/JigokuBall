@@ -42,6 +42,10 @@ public class Ball : MonoBehaviour
         {
             DebugSimulateHoleHit();
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("現在のスコア: " + Score.Instance.ScoreNum);
+        }
 #endif
     }
     

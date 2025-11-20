@@ -7,15 +7,15 @@ namespace HUD.Score
     {
         [SerializeField] private TextMeshProUGUI scoreText;
 
-        private void OnEnable()
-        {
-            Subscribe();
-        }
+        // private void OnEnable()
+        // {
+        //     Subscribe();
+        // }
 
-        private void OnDisable()
-        {
-            Unsubscribe();
-        }
+        // private void OnDisable()
+        // {
+        //     Unsubscribe();
+        // }
 
         private void Subscribe()
         {
@@ -27,7 +27,7 @@ namespace HUD.Score
             }
 
             score.OnScoreChanged += HandleScoreChanged;
-            UpdateScoreLabel(score.ScoreNum);
+            UpdateScoreLabel(Score.Instance.ScoreNum);
         }
 
         private void Unsubscribe()
@@ -48,11 +48,15 @@ namespace HUD.Score
             UpdateScoreLabel(currentScore + delta);
         }
 
-        private void UpdateScoreLabel(int value)
+        public void UpdateScoreLabel(int value)
         {
+            if (scoreText == null)
+            {
+                Debug.LogWarning("ScoreObj: scoreText が設定されていません。");
+                return;
+            }
             scoreText.text = value.ToString();
             Debug.Log("Score Updated: " + value.ToString());
-
         }
     }
 }
