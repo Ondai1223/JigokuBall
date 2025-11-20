@@ -109,6 +109,7 @@ public class BallThrower : MonoBehaviour
     private void HandleAttemptResolved(AttemptResult result)
     {
         attemptActive = false;
+        ballComponent.ChangeScale();
         CancelInvoke(nameof(HandleThrowTimeout));
     }
 

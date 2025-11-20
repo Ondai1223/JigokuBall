@@ -61,7 +61,23 @@ public class GameStage : MonoBehaviour
         hole2Ds = new PolygonCollider2D[holeParents.Length];
         for (int i = 0; i < holeParents.Length; i++)
         {
-            hole2Ds[i] = holeParents[i].transform.Find("2DHole").GetComponent<PolygonCollider2D>();
+            Debug.Log("Finding 2DHole in: " + holeParents[i].name);
+            
+            Transform hole2DTransform = holeParents[i].transform.Find("2DHole");
+            if (hole2DTransform == null)
+            {
+                Debug.LogError($"❌ '2DHole' not found in {holeParents[i].name}");
+                continue;
+            }
+            
+            PolygonCollider2D collider = hole2DTransform.GetComponent<PolygonCollider2D>();
+            if (collider == null)
+            {
+                Debug.LogError($"❌ PolygonCollider2D not found on {hole2DTransform.name}");
+                continue;
+            }
+            
+            hole2Ds[i] = collider;
         }
         Debug.Log("Number of 2D holes: " + hole2Ds.Length);
     }

@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace HUD.Score
 {
     public class Score
@@ -5,6 +8,8 @@ namespace HUD.Score
         public static Score Instance;
         private int scoreNum;
         public int ScoreNum => scoreNum;
+        public event Action<int> OnScoreChanged;
+        private ScoreObj scoreObj;
 
         public static Score GetInstance()
         {
@@ -12,6 +17,7 @@ namespace HUD.Score
             {
                 Instance = new Score();
                 Instance.scoreNum = 0;
+                Instance.scoreObj = UnityEngine.Object.FindObjectOfType<ScoreObj>();
             }
             return Instance;
         }
@@ -20,10 +26,13 @@ namespace HUD.Score
         {
             scoreNum += newScoreNum;
             UnityEngine.Debug.Log("Score Added: " + newScoreNum.ToString() + ", Total Score: " + scoreNum.ToString());
+            // OnScoreChanged?.Invoke(newScoreNum);
+            scoreObj.UpdateScoreLabel(scoreNum);
         }
 
         public void ResetScore()
         {
+            Instance = null;
             scoreNum = 0;
         }
     }
